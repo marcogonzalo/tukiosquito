@@ -1,0 +1,21 @@
+<h1>Listing cupones</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cupones.each do |cupon| %>
+  <tr>
+    <td><%= link_to 'Show', cupon %></td>
+    <td><%= link_to 'Edit', edit_cupon_path(cupon) %></td>
+    <td><%= link_to 'Destroy', cupon, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cupon', new_cupon_path %>

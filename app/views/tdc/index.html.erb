@@ -1,0 +1,21 @@
+<h1>Listing tdc</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tdc.each do |tdc| %>
+  <tr>
+    <td><%= link_to 'Show', tdc %></td>
+    <td><%= link_to 'Edit', edit_tdc_path(tdc) %></td>
+    <td><%= link_to 'Destroy', tdc, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tdc', new_tdc_path %>

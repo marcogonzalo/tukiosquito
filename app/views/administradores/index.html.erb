@@ -1,0 +1,21 @@
+<h1>Listing administradores</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administradores.each do |administrador| %>
+  <tr>
+    <td><%= link_to 'Show', administrador %></td>
+    <td><%= link_to 'Edit', edit_administrador_path(administrador) %></td>
+    <td><%= link_to 'Destroy', administrador, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Administrador', new_administrador_path %>
