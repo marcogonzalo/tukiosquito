@@ -1,0 +1,17 @@
+<%= form_for(@factura_distribuidor) do |f| %>
+  <% if @factura_distribuidor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@factura_distribuidor.errors.count, "error") %> prohibited this factura_distribuidor from being saved:</h2>
+
+      <ul>
+      <% @factura_distribuidor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

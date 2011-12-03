@@ -1,4 +1,6 @@
 Tukiosquito::Application.routes.draw do
+  resources :facturas_distribuidores
+
   resources :cupones
 
   resources :promociones

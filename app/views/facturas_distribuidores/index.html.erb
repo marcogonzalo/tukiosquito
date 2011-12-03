@@ -1,0 +1,21 @@
+<h1>Listing facturas_distribuidores</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @facturas_distribuidores.each do |factura_distribuidor| %>
+  <tr>
+    <td><%= link_to 'Show', factura_distribuidor %></td>
+    <td><%= link_to 'Edit', edit_factura_distribuidor_path(factura_distribuidor) %></td>
+    <td><%= link_to 'Destroy', factura_distribuidor, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Factura distribuidor', new_factura_distribuidor_path %>
