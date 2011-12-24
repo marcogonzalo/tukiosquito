@@ -1,6 +1,7 @@
 class CreateProductos < ActiveRecord::Migration
   def change
-    create_table :productos, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    #, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci"
+    create_table :productos do |t|
       t.string  :nombre, :limit => 100, :null => false
       t.string  :descripcion, :null => false
       t.integer :categoria_id, :limit => 3, :null => false

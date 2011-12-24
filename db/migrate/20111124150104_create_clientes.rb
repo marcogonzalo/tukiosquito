@@ -1,6 +1,6 @@
 class CreateClientes < ActiveRecord::Migration
   def change
-    create_table :clientes, :options => "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    create_table :clientes do |t|
       t.string  :nombre, :limit=>100, :null=>false
       t.string  :apellido, :limit=>100, :null=>false
       t.string  :sexo, :limit=>1, :null=>false, :default=>'M'
