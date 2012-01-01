@@ -41,11 +41,6 @@ ActiveRecord::Schema.define(:version => 20111203012900) do
     t.datetime "updated_at"
   end
 
-  create_table "cupones", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "facturas_distribuidores", :force => true do |t|
     t.integer  "orden_id",                     :null => false
     t.string   "distribuidor",  :limit => 100, :null => false
@@ -79,11 +74,6 @@ ActiveRecord::Schema.define(:version => 20111203012900) do
     t.integer  "largo",           :limit => 5
     t.boolean  "resaltar",                       :default => false
     t.date     "fecha_fin_venta",                                   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "promociones", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
