@@ -1,4 +1,7 @@
 class Tdc < ActiveRecord::Base
+  belongs_to :clientes
+  has_one :orden
+  
   TIPO_TDC = ["Visa","Mastercard"]
   validates :numero,
             :presence => true,

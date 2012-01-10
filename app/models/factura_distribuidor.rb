@@ -1,4 +1,6 @@
 class FacturaDistribuidor < ActiveRecord::Base
+  belongs_to :orden
+  
   validates :orden_id,
             :presence => true
   validates :distribuidor,

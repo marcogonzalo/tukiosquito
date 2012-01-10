@@ -1,4 +1,7 @@
 class Cliente < ActiveRecord::Base
+  has_many :tdc
+  has_many :ordenes
+  
   SEXO = ["M","F"]
   validates :nombre,
             :presence => true,

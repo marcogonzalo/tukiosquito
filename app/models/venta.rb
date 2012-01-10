@@ -1,4 +1,7 @@
 class Venta < ActiveRecord::Base
+  belongs_to :ordenes
+  belongs_to :productos
+  
   validates :producto_id,
             :presence => true,
             :numericality => { :only_integer => true }

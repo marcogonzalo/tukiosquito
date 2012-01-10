@@ -1,4 +1,7 @@
 class Producto < ActiveRecord::Base
+  has_many :ventas
+  has_many :ordenes, :through => :ventas
+  
   validates :nombre,
             :presence => true,
             :length => 5..100

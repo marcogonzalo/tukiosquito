@@ -1,4 +1,10 @@
 class Orden < ActiveRecord::Base
+  has_one :factura_distribuidor
+  has_many :ventas
+  has_many :productos, :through => :ventas
+  belongs_to :tdc
+  belongs_to :clientes
+  
   validates :usuario_id,
             :numericality => true,
             :presence => true
