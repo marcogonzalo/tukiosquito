@@ -1,6 +1,7 @@
 class CreateTdc < ActiveRecord::Migration
   def change
     create_table :tdc do |t|
+      t.integer :cliente_id, :null=>false
       t.integer :numero, :limit=>20, :null=>false
       t.string  :tipo, :limit=>20, :null=>false, :default=>"Visa"
       t.integer :codigo, :limit=>3, :null=>false, :default=>000
