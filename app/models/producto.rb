@@ -1,6 +1,8 @@
 class Producto < ActiveRecord::Base
   has_many :ventas
   has_many :ordenes, :through => :ventas
+  belongs_to :categorias
+  belongs_to :subcategorias
   
   validates :nombre,
             :presence => true,
