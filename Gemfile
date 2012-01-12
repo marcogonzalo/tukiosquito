@@ -11,10 +11,12 @@ gem 'sqlite3'
 # Gems used only for assets and not required
 # in production environments by default.
 
-gem 'execjs'
-gem 'therubyracer'
+group :development do
+  gem 'execjs'
+  gem 'therubyracer'
 
-gem 'jquery-rails'
+  gem 'jquery-rails'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

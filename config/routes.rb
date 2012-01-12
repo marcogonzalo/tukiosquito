@@ -1,16 +1,14 @@
 Tukiosquito::Application.routes.draw do
+  resources :subcategorias
+
+  resources :categorias
+
   resources :facturas_distribuidores
-
   resources :productos
-
   resources :ventas
-
   resources :ordenes
-
   resources :administradores
-
   resources :tdc
-
   resources :clientes
 
   # The priority is based upon order of creation:
