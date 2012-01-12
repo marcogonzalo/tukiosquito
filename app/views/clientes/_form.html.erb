@@ -10,6 +10,54 @@
       </ul>
     </div>
   <% end %>
+  <div>
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :apellido %><br>
+    <%= f.text_field :apellido, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :sexo %><br>
+    <%= select("cliente", "sexo", %w[M F])%>
+  </div>
+  <div>
+    <%= f.label :fecha_nacimiento, 'Fecha de nacimiento' %><br>
+    <%= f.text_field :fecha_nacimiento, :size => "", :class=>"validate[maxSize[10]]" %>
+  </div>
+  <div>
+    <%= f.label :correo_electronico, 'Correo electrónico' %><br>
+    <%= f.text_field :correo_electronico, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :usuario %><br>
+    <%= f.text_field :usuario, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :clave %><br>
+    <%= f.text_field :clave, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :telefono, 'Teléfono' %><br>
+    <%= f.text_field :telefono, :size => "", :class=>"validate[maxSize[20]]" %>
+  </div>
+  <div>
+    <%= f.label :direccion, 'Dirección' %><br>
+    <%= f.text_field :direccion, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :ciudad %><br>
+    <%= f.text_field :ciudad, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :estado %><br>
+    <%= f.text_field :estado, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :pais, 'País' %><br>
+    <%= f.text_field :pais, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

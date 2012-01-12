@@ -11,6 +11,55 @@
     </div>
   <% end %>
 
+  <div>
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :descripcion, 'Descripción' %><br>
+    <%= f.text_area :descripcion, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :categoria_id, 'Categoría' %><br>
+    <%= f.collection_select(:categoria_id, @categorias, :id, :nombre, options = {}, html_options = {:class=>"validate[required]"}) %> 
+  </div>
+  <div>
+    <%= f.label :subcategoria_id, 'Subcategoría' %><br>
+    <%= f.collection_select(:subcategoria_id, @subcategorias, :id, :nombre, options = {}, html_options = {:class=>"validate[required]"}) %> 
+  </div>
+  <div>
+    <%= f.label :precio %><br>
+    <%= f.text_field :precio, :size => "", :class=>"validate[maxSize[10]]" %>
+  </div>
+  <div>
+    <%= f.label :cantidad %><br>
+    <%= f.text_area :cantidad, :size => "", :class=>"validate[maxSize[10]]" %>
+  </div>
+  <div>
+    <%= f.label :peso %><br>
+    <%= f.text_area :peso, :size => "", :class=>"validate[maxSize[10]]" %>
+  </div>
+  <div>
+    <%= f.label :alto %><br>
+    <%= f.text_area :alto, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :ancho %><br>
+    <%= f.text_area :ancho, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :largo %><br>
+    <%= f.text_area :largo, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :resaltar %><br>
+    <%= f.text_area :resaltar, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :fecha_fin_venta, 'Fecha de finalización de la venta' %>
+    <%= f.text_area :fecha_fin_venta, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
