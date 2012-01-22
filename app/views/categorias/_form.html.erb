@@ -10,7 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <div>
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :descripcion, 'Descripción de la categoría' %><br>
+    <%= f.text_field :descripcion, :size => "", :class=>"validate[maxSize[255]]" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

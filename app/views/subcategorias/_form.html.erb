@@ -10,6 +10,17 @@
       </ul>
     </div>
   <% end %>
+  <div>
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :size => "", :class=>"validate[maxSize[100]]" %>
+  </div>
+  <div>
+    <%= f.label :descripcion, 'Descripción de la categoría' %><br>
+    <%= f.text_field :descripcion, :size => "", :class=>"validate[maxSize[255]]" %>
+  <div>
+    <%= f.label :categoria_id, 'Categoría superior' %><br>
+    <%= f.collection_select(:categoria_id, @categorias, :id, :nombre, options = {}, html_options = {:class=>"validate[required]"}) %> 
+  </div>
 
   <div class="actions">
     <%= f.submit %>

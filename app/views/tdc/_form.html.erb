@@ -10,7 +10,30 @@
       </ul>
     </div>
   <% end %>
-
+  <div>
+    <%= f.label :numero %><br>
+    <%= f.text_field :numero, :size => "", :class=>"validate[maxSize[16]]" %>
+  </div>
+  <div>
+    <%= f.label :tipo %><br>
+    <%= select("tdc", "tipo", %w[Visa Mastercard], {:include_blank => true, :index=>nil }) %>
+  </div>
+  <div>
+    <%= f.label :codigo %><br>
+    <%= f.text_field :codigo, :size => "", :class=>"validate[custom[integer],min[1],maxSize[3]]" %>
+  </div>
+  <div>
+    <%= f.label 'Fecha de vencimiento (mm/aa)' %><br>
+    <%= f.text_field :mes_vencimiento, :size => "", :class => "validate[custom[integer],min[1],max[12]] campo_corto" %>/<%= f.text_field :ano_vencimiento, :size => "", :class => "validate[custom[integer],min[12]]" %>
+  </div>
+  <div>
+    <%= f.label :direccion, 'Dirección de cobro' %><br>
+    <%= f.text_field :direccion, :size => "", :class => "validate[maxSize[255]]" %>
+  </div>
+  <div>
+    <%= f.label :tarjetahabiente, 'Nombre del tarjetahabiente' %><br>
+    <%= f.text_field :tarjetahabiente, :size => "", :class => "validate[maxSize[100]]" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
