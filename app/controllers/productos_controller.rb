@@ -9,6 +9,7 @@ class ProductosController < ApplicationController
         @productos = Producto.where("categoria_id = ? AND subcategoria_id = ?",cat,subcat)
       else
         @productos = Producto.where("categoria_id = ? ",cat)
+      end
     else
       @productos = Producto.all
     end
