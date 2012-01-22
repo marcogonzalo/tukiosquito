@@ -2,11 +2,20 @@ class ProductosController < ApplicationController
   # GET /productos
   # GET /productos.json
   def index
-    @productos = Producto.all
-
+    cat = params[:cat_id].to_i
+    subcat = params[:subcat_id].to_i
+    if cat > 0 then
+      if subcat > 0 then
+        @productos = Producto.where("categoria_id = ? AND subcategoria_id = ?",cat,subcat)
+      else
+        @productos = Producto.where("categoria_id = ? ",cat)
+    else
+      @productos = Producto.all
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @productos }
+      #format.json { render json: @productos }
     end
   end
 
