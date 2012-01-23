@@ -1,0 +1,13 @@
+<h1>Iniciar sesi&oacute;n</h1>  
+      
+<%= form_tag sesiones_path do %>  
+  <div>  
+    <%= label_tag :usuario %><br>  
+    <%= text_field_tag :usuario, params[:usuario] %>  
+  </div>  
+  <div>  
+    <%= label_tag :clave %><br>  
+    <%= password_field_tag :clave %>  
+  </div>  
+  <div class="actions"><%= submit_tag 'Entrar' %></div>  
+<% end %>  

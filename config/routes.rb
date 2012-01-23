@@ -1,4 +1,16 @@
 Tukiosquito::Application.routes.draw do
+  root :to => 'sesiones#new'
+  
+  match "productos/c-:cat_id(/sc-:subcat_id)" => "productos#index", :as => :categorias
+ 
+  #SESIONES 
+  get "iniciar_sesion" => "sesiones#new", :as => "iniciar_sesion"
+  get "cerrar_sesion" => "sesiones#destroy", :as => "cerrar_sesion"
+  
+  #CLIENTES
+  get "registro" => "clientes#new", :as => "registro"
+  
+  #RECURSOS GENERALES
   resources :subcategorias
   resources :categorias
   resources :facturas_distribuidores
@@ -8,6 +20,7 @@ Tukiosquito::Application.routes.draw do
   resources :administradores
   resources :tdc
   resources :clientes
+  resources :sesiones
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -65,7 +78,5 @@ Tukiosquito::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-  
-  match "productos/c-:cat_id(/sc-:subcat_id)" => "productos#index", :as => :categorias
   
 end

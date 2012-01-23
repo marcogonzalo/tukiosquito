@@ -1,4 +1,7 @@
 class Cliente < ActiveRecord::Base
+  require 'digest/md5'
+  before_save :encriptar_clave
+  
   has_many :tdc
   has_many :ordenes
   
@@ -38,4 +41,19 @@ class Cliente < ActiveRecord::Base
   validates :pais,
             :presence => true,
             :length => 5..50
+
+  def self.autenticar(usuario, clave)
+    cliente = find_by_usuario(usuario)
+    if cliente && cliente.clave == Digest::MD5.hexdigest(clave)
+      cliente
+    else
+      nil
+    end
+  end  
+
+  def encriptar_clave
+    if clave.present?
+      self.clave = Digest::MD5.hexdigest(clave)
+    end
+  end
 end

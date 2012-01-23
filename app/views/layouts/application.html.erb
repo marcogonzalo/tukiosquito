@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tukiosquito</title>
+  <title>TuKiosquito.com - El Kiosco electr&oacute;nico</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <header>
+  TuKiosquito.com
+    <div id="nav_usuario">  
+    <% if usuario_actual %>  
+      En sesi&oacute;n como <%= usuario_actual.usuario %>  
+      <%= link_to "Cerrar sesión", cerrar_sesion_path %>  
+    <% else %>  
+      <%= link_to "Registrarse", registro_path %> o   
+      <%= link_to "Iniciar sesión", iniciar_sesion_path %>  
+    <% end %> 
+    </div>
+  </header>
+  
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg.html_safe, :id => "flash#{name}" %>
+  <% end %>
+  
+  <%= yield %>
+  <footer>TuKiosquito.com</footer>
 </body>
 </html>

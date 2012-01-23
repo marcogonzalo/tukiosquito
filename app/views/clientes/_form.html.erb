@@ -23,7 +23,7 @@
     <%= select("cliente", "sexo", %w[M F])%>
   </div>
   <div>
-    <%= f.label :fecha_nacimiento, 'Fecha de nacimiento' %><br>
+    <%= f.label :fecha_nacimiento, 'Fecha de nacimiento (aaaa-mm-dd)' %><br>
     <%= f.text_field :fecha_nacimiento, :size => "", :class=>"validate[maxSize[10]]" %>
   </div>
   <div>
@@ -36,7 +36,7 @@
   </div>
   <div>
     <%= f.label :clave %><br>
-    <%= f.text_field :clave, :size => "", :class=>"validate[maxSize[100]]" %>
+    <%= f.password_field :clave, :size => "", :class=>"validate[maxSize[100]]" %>
   </div>
   <div>
     <%= f.label :telefono, 'Teléfono' %><br>
