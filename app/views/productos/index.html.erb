@@ -1,21 +1,36 @@
 <h1>Listing productos</h1>
 
-<table>
+<table class="tablesorter">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Imagen</th>
+    <th>Producto</th>
+    <th>Bs.</th>
+    <th>Unidades disponibles</th>
+    <th>Acci&oacute;n</th>
   </tr>
 
 <% @productos.each do |producto| %>
   <tr>
-    <td><%= link_to 'Show', producto %></td>
-    <td><%= link_to 'Edit', edit_producto_path(producto) %></td>
-    <td><%= link_to 'Destroy', producto, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to '<img src="'+producto.id+'">', producto %></td>
+    <td><%= link_to producto.nombre, producto %></td>
+    <td><%= producto.precio %></td>
+    <td><%= producto.cantidad %></td>
+    <td>
+  <% if usuario_actual then %>  
+      Seleccionar
+  <% elsif admin_actual then %>
+      <%= link_to 'Editar', edit_producto_path(producto) %> | 
+      <%= link_to 'Eliminar', producto, confirm: '¿Borrar definitivamente?', method: :delete %>
+  <% else %>
+      Para seleccionar, debe iniciar sesi&oacute;n
+  <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Producto', new_producto_path %>
+<% if admin_actual then %>
+  <%= link_to 'Ingresar nuevo producto', new_producto_path %>
+<% end %>
