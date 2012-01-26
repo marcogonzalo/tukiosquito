@@ -44,7 +44,7 @@ class Cliente < ActiveRecord::Base
 
   def self.autenticar(usuario, clave)
     cliente = find_by_usuario(usuario)
-    if cliente && cliente.clave == Digest::MD5.hexdigest(clave)
+    if cliente and cliente.clave == Digest::MD5.hexdigest(clave)
       cliente
     else
       nil

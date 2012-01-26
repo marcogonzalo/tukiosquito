@@ -80,4 +80,20 @@ class ClientesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def iniciar_sesion  
+    cliente = Cliente.autenticar(params[:usuario], params[:clave])  
+    if cliente
+      session[:cliente_id] = cliente.id  
+      redirect_to :back, :notice => "Sesi&oacute;n iniciada correctamente."
+    else
+      flash.now.alert = "Usuario o clave inv&aacute;lidos."
+      render "iniciar_sesion"
+    end  
+  end 
+  
+  def cerrar_sesion
+    session[:cliente_id] = nil  
+    redirect_to root_url, :notice => "Sesi&oacute;n terminada."  
+  end 
 end

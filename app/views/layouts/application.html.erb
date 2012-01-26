@@ -10,12 +10,15 @@
   <header>
   TuKiosquito.com
     <div id="nav_usuario">  
-    <% if usuario_actual %>  
-      En sesi&oacute;n como <%= usuario_actual.usuario %>  
-      <%= link_to "Cerrar sesión", cerrar_sesion_path %>  
-    <% else %>  
-      <%= link_to "Registrarse", registro_path %> o   
-      <%= link_to "Iniciar sesión", iniciar_sesion_path %>  
+    <% if usuario_actual then %>  
+      En sesi&oacute;n como <b><%= usuario_actual.usuario %></b>  
+      <%= link_to "Cerrar sesión", cerrar_sesion_cliente_path %>  
+    <% elsif admin_actual then %>  
+      En sesi&oacute;n como <b><%= admin_actual.usuario %></b> (admin)
+      <%= link_to "Cerrar sesión de admin", cerrar_sesion_admin_path %>  
+    <% else %>    
+      <%= link_to "Registrarse", registro_cliente_path %> o   
+      <%= link_to "Iniciar sesión", iniciar_sesion_cliente_path %>  
     <% end %> 
     </div>
   </header>

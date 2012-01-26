@@ -1,14 +1,17 @@
 Tukiosquito::Application.routes.draw do
-  root :to => 'sesiones#new'
+  root :to => 'clientes#iniciar_sesion'
   
+  #PRODUCTOS
   match "productos/c-:cat_id(/sc-:subcat_id)" => "productos#index", :as => :categorias
  
-  #SESIONES 
-  get "iniciar_sesion" => "sesiones#new", :as => "iniciar_sesion"
-  get "cerrar_sesion" => "sesiones#destroy", :as => "cerrar_sesion"
-  
   #CLIENTES
-  get "registro" => "clientes#new", :as => "registro"
+  get "iniciar_sesion" => "clientes#iniciar_sesion", :as => "iniciar_sesion_cliente"
+  get "cerrar_sesion" => "clientes#cerrar_sesion", :as => "cerrar_sesion_cliente"
+  get "registro" => "clientes#new", :as => "registro_cliente"
+  
+  #ADMINISTRADORES
+  get "iniciar_como_admin" => "administradores#iniciar_sesion", :as => "iniciar_sesion_admin"
+  get "cerrar_como_admin" => "administradores#cerrar_sesion", :as => "cerrar_sesion_admin"
   
   #RECURSOS GENERALES
   resources :subcategorias
