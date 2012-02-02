@@ -90,7 +90,7 @@ class ClientesController < ApplicationController
       flash.now.alert = "Usuario o clave inv&aacute;lidos."
       render "iniciar_sesion"
     end  
-  end 
+  end
   
   def cerrar_sesion
     session[:cliente_id] = nil  

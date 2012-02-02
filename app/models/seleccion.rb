@@ -11,15 +11,19 @@ class Seleccion < ActiveRecord::Base
     end
     producto_actual.save
   end
-
+  
+  def ver_producto
+    producto = Producto.find(self.producto_id)
+    producto
+  end
   
   def total_producto
     producto = Producto.find(self.producto_id)
     total = self.cantidad*producto.precio
   end
   
-  def quitar_del_carro
-    seleccion = Seleccion.where("cliente_id = ? AND producto_id = ?",self.cliente_id,self.producto_id)
+  def self.quitar_producto(cliente_id,producto_id)
+    seleccion = Seleccion.where("cliente_id = ? AND producto_id = ?",cliente_id,producto_id)
     seleccion.destroy
   end
   

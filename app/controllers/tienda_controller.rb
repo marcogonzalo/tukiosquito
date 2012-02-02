@@ -24,10 +24,19 @@ class TiendaController < ApplicationController
     end
   end
   
+  def carrito
+    @selecciones = usuario_actual.selecciones
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+  
   def agregar_al_carro
     producto = Producto.find(params[:id])
     Seleccion.agregar_producto(usuario_actual.id,producto.id)
-    redirect_to_index
+    redirect_to carrito_path
     #rescue ActiveRecord::RecordNotFound
     #  logger.error("Producto indicado no existe")
     #  redirect_to_index("Producto inexistente")
@@ -35,6 +44,9 @@ class TiendaController < ApplicationController
   end
   
   def quitar_del_carro
+    seleccion = Seleccion.find(params[:id])
+    seleccion.destroy
+    redirect_to carrito_path
   end
   
   def vaciar_carro
