@@ -1,18 +1,25 @@
 Tukiosquito::Application.routes.draw do
-  root :to => 'clientes#iniciar_sesion'
-  
-  #PRODUCTOS
-  match "productos/c-:cat_id(/sc-:subcat_id)" => "productos#index", :as => :categorias
+
+  root :to => 'tienda#index'
  
   #CLIENTES
-  get "iniciar_sesion" => "clientes#iniciar_sesion", :as => "iniciar_sesion_cliente"
+  match "iniciar_sesion" => "clientes#iniciar_sesion", :as => "iniciar_sesion_cliente"
   get "cerrar_sesion" => "clientes#cerrar_sesion", :as => "cerrar_sesion_cliente"
   get "registro" => "clientes#new", :as => "registro_cliente"
   
   #ADMINISTRADORES
-  get "iniciar_como_admin" => "administradores#iniciar_sesion", :as => "iniciar_sesion_admin"
+  match "iniciar_como_admin" => "administradores#iniciar_sesion", :as => "iniciar_sesion_admin"
   get "cerrar_como_admin" => "administradores#cerrar_sesion", :as => "cerrar_sesion_admin"
   
+  #PRODUCTOS
+  match "c-:cat_id(/sc-:subcat_id)" => "tienda#index"
+  
+  #CARRITO
+  match "/agregar_al_carro" => "tienda#agregar_al_carro"
+  match "/quitar_carro" => "tienda#quitar_del_carro"
+  match "/vaciar_carro" => "tienda#vaciar_carro"
+  match "/carrito" => "tienda#carrito"
+
   #RECURSOS GENERALES
   resources :subcategorias
   resources :categorias
@@ -23,7 +30,6 @@ Tukiosquito::Application.routes.draw do
   resources :administradores
   resources :tdc
   resources :clientes
-  resources :sesiones
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
