@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>TuKiosquito.com - El Kiosco electr&oacute;nico</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "blueprint/ie.css","blueprint/screen.css","application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -22,12 +22,23 @@
     <% end %> 
     </div>
   </header>
-  
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg.html_safe, :id => "flash#{name}" %>
   <% end %>
-  
-  <%= yield %>
+  <div class="container">
+    <nav class="span-4">
+      <p><b>Categor&iacute;as</b></p>
+      <ul id="categorias">
+      <% Categoria.all.each do |c| %>
+        <li><%= link_to c.nombre, '/c-'+c.id.to_s %></li>
+      <% end %>
+      </ul>
+    </nav>
+    <div class="span-20 last">
+      <%= yield %>
+    </div>
+  </div>
+  <hr>
   <footer>TuKiosquito.com</footer>
 </body>
 </html>

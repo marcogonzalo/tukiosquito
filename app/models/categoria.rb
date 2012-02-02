@@ -4,8 +4,8 @@ class Categoria < ActiveRecord::Base
   
   validates :nombre,
             :presence => true,
-            :lenght => 5..50
+            :length => 5..50
   validates :descripcion,
             :presence => false,
-            :lenght => 5..250
+            :length => 5..250
 end

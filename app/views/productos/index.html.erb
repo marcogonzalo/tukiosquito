@@ -4,16 +4,16 @@
   <tr>
     <th>Imagen</th>
     <th>Producto</th>
-    <th>Bs.</th>
-    <th>Unidades disponibles</th>
+    <th>Precio</th>
+    <th>Disponibles</th>
     <th>Acci&oacute;n</th>
   </tr>
 
 <% @productos.each do |producto| %>
   <tr>
-    <td><%= link_to '<img src="'+producto.id+'">', producto %></td>
+    <td><%= link_to image_tag("producto/"+producto.imagen), producto %></td>
     <td><%= link_to producto.nombre, producto %></td>
-    <td><%= producto.precio %></td>
+    <td>Bs.<%= producto.precio %></td>
     <td><%= producto.cantidad %></td>
     <td>
   <% if usuario_actual then %>  

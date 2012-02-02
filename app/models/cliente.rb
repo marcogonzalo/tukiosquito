@@ -4,6 +4,7 @@ class Cliente < ActiveRecord::Base
   
   has_many :tdc
   has_many :ordenes
+  has_many :selecciones
   
   SEXO = ["M","F"]
   validates :nombre,

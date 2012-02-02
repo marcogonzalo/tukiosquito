@@ -34,6 +34,8 @@ class ProductosController < ApplicationController
   # GET /productos/new
   # GET /productos/new.json
   def new
+    @categorias = Categoria.all
+    @subcategorias = Subcategoria.all
     @producto = Producto.new
 
     respond_to do |format|
@@ -44,6 +46,8 @@ class ProductosController < ApplicationController
 
   # GET /productos/1/edit
   def edit
+    @categorias = Categoria.all
+    @subcategorias = Subcategoria.all
     @producto = Producto.find(params[:id])
   end
 

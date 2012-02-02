@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112163236) do
+ActiveRecord::Schema.define(:version => 20120129030400) do
 
   create_table "administradores", :force => true do |t|
     t.string   "nombre",             :limit => 50
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20120112163236) do
     t.string   "usuario",            :limit => 50,  :null => false
     t.string   "clave",              :limit => 50,  :null => false
     t.string   "tipo",               :limit => 20
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "carros", :force => true do |t|
+    t.integer  "cliente_id"
+    t.integer  "producto_id"
+    t.integer  "cantidad"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,11 +54,6 @@ ActiveRecord::Schema.define(:version => 20120112163236) do
     t.datetime "updated_at"
   end
 
-  create_table "cupones", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "facturas_distribuidores", :force => true do |t|
     t.integer  "orden_id",                     :null => false
     t.string   "distribuidor",  :limit => 100, :null => false
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20120112163236) do
   end
 
   create_table "ordenes", :force => true do |t|
-    t.integer  "usuario_id",                         :null => false
+    t.integer  "cliente_id",                         :null => false
     t.integer  "tarjeta_id",                         :null => false
     t.string   "direccion_entrega",                  :null => false
     t.float    "total",             :default => 0.0, :null => false
@@ -82,13 +85,17 @@ ActiveRecord::Schema.define(:version => 20120112163236) do
     t.integer  "alto",            :limit => 5
     t.integer  "ancho",           :limit => 5
     t.integer  "largo",           :limit => 5
+    t.string   "imagen"
     t.boolean  "resaltar",                       :default => false
     t.date     "fecha_fin_venta",                                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "promociones", :force => true do |t|
+  create_table "selecciones", :force => true do |t|
+    t.integer  "cliente_id"
+    t.integer  "producto_id"
+    t.integer  "cantidad"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20120112163236) do
   end
 
   create_table "tdc", :force => true do |t|
+    t.integer  "cliente_id",                                        :null => false
     t.integer  "numero",          :limit => 20,                     :null => false
     t.string   "tipo",            :limit => 20, :default => "Visa", :null => false
     t.integer  "codigo",          :limit => 3,  :default => 0,      :null => false

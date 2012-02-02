@@ -12,6 +12,7 @@ class CreateProductos < ActiveRecord::Migration
       t.integer :alto, :limit => 5
       t.integer :ancho, :limit => 5
       t.integer :largo, :limit => 5
+      t.string :imagen
       t.boolean :resaltar, :default=>false 
       t.date    :fecha_fin_venta, :null=>false
       t.timestamps
