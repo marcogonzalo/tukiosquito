@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(:version => 20120129030400) do
     t.datetime "updated_at"
   end
 
-  create_table "carros", :force => true do |t|
-    t.integer  "cliente_id"
-    t.integer  "producto_id"
-    t.integer  "cantidad"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "categorias", :force => true do |t|
     t.string "nombre",      :limit => 100, :null => false
     t.string "descripcion"
@@ -108,9 +100,9 @@ ActiveRecord::Schema.define(:version => 20120129030400) do
 
   create_table "tdc", :force => true do |t|
     t.integer  "cliente_id",                                        :null => false
-    t.integer  "numero",          :limit => 20,                     :null => false
+    t.string   "numero",          :limit => 20,                     :null => false
     t.string   "tipo",            :limit => 20, :default => "Visa", :null => false
-    t.integer  "codigo",          :limit => 3,  :default => 0,      :null => false
+    t.string   "codigo",          :limit => 3,  :default => "000",  :null => false
     t.integer  "mes_vencimiento", :limit => 2,  :default => 12,     :null => false
     t.integer  "ano_vencimiento", :limit => 2,  :default => 12,     :null => false
     t.string   "direccion",                                         :null => false
@@ -124,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20120129030400) do
     t.integer  "orden_id",                   :null => false
     t.integer  "cantidad",    :default => 1, :null => false
     t.float    "costo",                      :null => false
+    t.integer  "vendidos",    :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
