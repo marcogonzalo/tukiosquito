@@ -54,6 +54,8 @@ class ProductosController < ApplicationController
   # POST /productos
   # POST /productos.json
   def create
+    @categorias = Categoria.all
+    @subcategorias = Subcategoria.all
     @producto = Producto.new(params[:producto])
 
     respond_to do |format|

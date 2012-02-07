@@ -41,7 +41,13 @@ class OrdenesController < ApplicationController
   # POST /ordenes.json
   def create
     @orden = Orden.new(params[:orden])
-
+    if
+    else
+      session[:carro] = :nil
+      Seleccion.vaciar_carro(usuario_actual.id)
+      redirect_to_index
+    end
+    
     respond_to do |format|
       if @orden.save
         format.html { redirect_to @orden, notice: 'Orden was successfully created.' }

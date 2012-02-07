@@ -40,6 +40,7 @@ class TdcController < ApplicationController
   # POST /tdc
   # POST /tdc.json
   def create
+    params[:tdc][:cliente_id] = usuario_actual.id
     @tdc = Tdc.new(params[:tdc])
 
     respond_to do |format|
@@ -57,7 +58,7 @@ class TdcController < ApplicationController
   # PUT /tdc/1.json
   def update
     @tdc = Tdc.find(params[:id])
-
+    params[:tdc][:cliente_id] = @tdc.cliente_id
     respond_to do |format|
       if @tdc.update_attributes(params[:tdc])
         format.html { redirect_to @tdc, notice: 'Tdc was successfully updated.' }

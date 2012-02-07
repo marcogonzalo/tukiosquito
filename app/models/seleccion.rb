@@ -12,6 +12,18 @@ class Seleccion < ActiveRecord::Base
     producto_actual.save
   end
   
+  def self.aumentar_cantidad_producto(id)
+    seleccion = Seleccion.where("id = ?",id).first
+    seleccion.cantidad += 1
+    seleccion.save
+  end
+  
+  def self.reducir_cantidad_producto(id)
+    seleccion = Seleccion.where("id = ?",id).first
+    seleccion.cantidad -= 1
+    seleccion.save
+  end
+  
   def ver_producto
     producto = Producto.find(self.producto_id)
     producto
@@ -38,7 +50,17 @@ class Seleccion < ActiveRecord::Base
     @selecciones = Seleccion.where("cliente_id = ?",cliente_id)
     total = 0
     @selecciones.each do |seleccion|
-      total += total_producto(seleccion.producto_id)
+      total += seleccion.total_producto
+    end
+    total
+  end
+    
+  def self.peso_total(cliente_id)
+    @selecciones = Seleccion.where("cliente_id = ?",cliente_id)
+    total = 0
+    @selecciones.each do |seleccion|
+      producto = Producto.find(seleccion.producto_id)
+      total += seleccion.cantidad*producto.peso
     end
     total
   end

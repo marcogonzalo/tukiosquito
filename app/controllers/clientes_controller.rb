@@ -82,14 +82,16 @@ class ClientesController < ApplicationController
   end
   
   def iniciar_sesion  
-    cliente = Cliente.autenticar(params[:usuario], params[:clave])  
-    if cliente
-      session[:cliente_id] = cliente.id  
-      redirect_to :back, :notice => "Sesi&oacute;n iniciada correctamente."
-    else
-      flash.now.alert = "Usuario o clave inv&aacute;lidos."
-      render "iniciar_sesion"
-    end  
+    if params[:usuario] or params[:clave] then
+      cliente ||= Cliente.autenticar(params[:usuario], params[:clave])  
+      if cliente
+        session[:cliente_id] = cliente.id  
+        redirect_to root_url, :notice => "Sesi&oacute;n iniciada correctamente."
+      else
+        flash.now.alert = "Usuario o clave inv&aacute;lidos."
+        render "iniciar_sesion"
+      end
+    end
   end
   
   def cerrar_sesion

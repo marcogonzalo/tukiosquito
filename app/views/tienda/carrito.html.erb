@@ -3,7 +3,7 @@
     <th>Imagen</th>
     <th>Producto</th>
     <th>Precio</th>
-    <th>Disponibles</th>
+    <th>Cantidad</th>
     <th>Acci&oacute;n</th>
   </tr>
 
@@ -12,11 +12,24 @@
     producto = seleccion.ver_producto
 %>
   <tr>
-    <td><%= link_to ("<img src=\""+producto.id.to_s+"\">").html_safe, producto %></td>
+    <td><%= link_to image_tag(producto.imagen,:height=>"100px",:width=>"100px"), producto %></td>
     <td><%= link_to producto.nombre, producto %></td>
-    <td><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>",") %></td>
-    <td><%= seleccion.cantidad %></td>
+    <td class="dinero"><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+    <td><%= seleccion.cantidad %>
+    <% if seleccion.cantidad <= 1 %>
+      <%= button_to "-", {:action=>'reducir_cantidad', :id=>seleccion.id}, :disabled=>true %>
+    <% else %>
+      <%= button_to "-", { :action=>'reducir_cantidad', :id=>seleccion.id }, :disabled=>false %>
+    <% end %>
+    <% if seleccion.cantidad >= producto.cantidad %>
+      <%= button_to "+", { :action=>'aumentar_cantidad', :id=>seleccion.id }, :disabled=>true %>
+    <% else %>
+      <%= button_to "+", { :action=>'aumentar_cantidad', :id=>seleccion.id }, :disabled=>false %>
+    <% end %>
+
+    </td>
     <td><%= button_to "Quitar", :action=>'quitar_del_carro', :id=>producto.id %></td>
   </tr>
 <% end %>
 </table>
+<div><%= link_to "Generar orden", {:action=>'generar_orden'}, :class=>"boton-siguiente" %></div>
