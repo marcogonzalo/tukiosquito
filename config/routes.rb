@@ -14,11 +14,12 @@ Tukiosquito::Application.routes.draw do
   #PRODUCTOS
   match "c-:cat_id(/sc-:subcat_id)" => "tienda#index"
   
-  #CARRITO
+  #CARRITO Y TIENDA
   match "/agregar_al_carro" => "tienda#agregar_al_carro"
   match "/quitar_del_carro" => "tienda#quitar_del_carro"
   match "/vaciar_carro" => "tienda#vaciar_carro"
   match "/carrito" => "tienda#carrito", :as => "carrito"
+  match "/carrito/cambiar_cantidad" => "tienda#cambiar_cantidad"
 
   #RECURSOS GENERALES
   resources :subcategorias

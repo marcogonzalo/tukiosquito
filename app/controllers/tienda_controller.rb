@@ -49,9 +49,16 @@ class TiendaController < ApplicationController
     redirect_to carrito_path
   end
   
-  def aumentar_cantidad
-    seleccion = Seleccion.where("producto_id = ? AND cliente_id = ?",params[:id],usuario_actual.id).first()
-    Seleccion.aumentar_cantidad_producto(seleccion.id)
+  def cambiar_cantidad
+    id = params[:id].to_i
+    if id > 0
+      seleccion = Seleccion.where("producto_id = ? AND cliente_id = ?",params[:id],usuario_actual.id).first()
+      if params[:aumentar_cantidad]
+        Seleccion.aumentar_cantidad_producto(seleccion.id)
+      elsif params[:reducir_cantidad]
+        Seleccion.reducir_cantidad_producto(seleccion.id)
+      end
+    end
     redirect_to carrito_path
   end
   
@@ -59,13 +66,6 @@ class TiendaController < ApplicationController
     seleccion = Seleccion.where("producto_id = ? AND cliente_id = ?",params[:id],usuario_actual.id).first()
     Seleccion.reducir_cantidad_producto(seleccion.id)
     redirect_to carrito_path
-  end
-  
-  def generar_orden
-    @selecciones = Seleccion.where("cliente_id = ?",usuario_actual.id)
-    @peso_total = Seleccion.peso_total(usuario_actual.id)
-    @precio_total = Seleccion.precio_total(usuario_actual.id)
-    @tarjetas = usuario_actual.tdc
   end
   
   private

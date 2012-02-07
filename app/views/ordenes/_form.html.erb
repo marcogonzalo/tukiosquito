@@ -1,7 +1,9 @@
-<%= form_for(@orden) do |f| %>
-  <% if @orden.errors.any? %>
+<h2>Seleccionar Tarjeta de Cr&eacute;dito</h2>
+<% unless @tarjetas.empty? %>
+  <%= form_for(@orden) do |f| %>
+    <% if @orden.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@orden.errors.count, "error") %> prohibited this orden from being saved:</h2>
+      <h3><%= pluralize(@orden.errors.count, "error") %> prohibited this orden from being saved:</h3>
 
       <ul>
       <% @orden.errors.full_messages.each do |msg| %>
@@ -9,9 +11,35 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
+  <table id="tarjetas">
+    <tr>
+      <th>Selecci&oacute;n</th>
+      <th>N&uacute;mero</th>
+      <th>Tipo</th>
+      <th>Tarjetahabiente</th>
+      <th>Fecha de Vencimiento</th>
+    </tr>
 
-  <div class="actions">
-    <%= f.submit %>
+    <% @tarjetas.each do |tdc| %>
+    <tr>
+      <td><%= radio_button_tag :tarjeta_id, tdc.id, :class=>"validate[required]" %></td>
+      <td><%= tdc.numero %></td>
+      <td><%= tdc.tipo %></td>
+      <td><%= tdc.tarjetahabiente %></td>
+      <td><%= tdc.mes_vencimiento.to_s+"/"+tdc.ano_vencimiento.to_s %></td>
+    </tr>
+    <% end %>
+  </table>
+  <h2>Direcci&oacute;n de entrega</h2>
+  <div>
+    <%= f.label 'direccion_entrega', "Especifique la dirección donde será entregada su orden" %><br>  
+    <%= f.text_area :direccion_entrega, :size => "", :class=>"validate[maxSize[100]]" %> 
   </div>
+  <div class="actions">
+    <%= f.submit :value=>"Comprar" %>
+  </div>
+  <% end %>
+<% else %>
+<p><%= link_to 'Agregar Tarjeta de Crédito', new_tdc_path %></p>
 <% end %>

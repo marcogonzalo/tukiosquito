@@ -1,5 +1,40 @@
-<h1>New orden</h1>
+<h1>Generando orden</h1>
+<%= link_to 'Volver al carrito de compras', carrito_path %>
+<h2>Resumen</h2>
+<table>
+  <tr>
+    <th>Imagen</th>
+    <th>Producto</th>
+    <th>Precio</th>
+    <th>Cantidad</th>
+    <th>Total del producto</th>
+  </tr>
+<% 
+  @selecciones.each do |seleccion| 
+    producto = seleccion.ver_producto
+%>
+  <tr>
+    <td class="alcentro"><%= link_to image_tag(producto.imagen,:height=>"100px",:width=>"100px"), producto %></td>
+    <td><%= link_to producto.nombre, producto %></td>
+    <td class="aladerecha"><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+    <td><%= seleccion.cantidad %></td>
+    <td class="aladerecha"><%= number_to_currency(seleccion.total_producto, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+  </tr>
+<% end %>
+</table>
+<table>
+  <tr>
+    <td><b>Costo de env&iacute;o</b> (Peso: <%= number_to_currency(@peso_total, :unit=>"", :delimeter=>".", :separator=>",") %>Kg):</td>
+    <td class="aladerecha"> <%= number_to_currency(100, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+    <td><b>Subtotal</b>:</td>
+    <td class="aladerecha"><%= number_to_currency(@precio_total, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+  </tr>
+  <tr>
+    <td></td><td></td>
+    <td><b>Total</b>:</td> 
+    <td class="aladerecha"><%= number_to_currency(@precio_total+100, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+  </tr>
+</table>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', ordenes_path %>

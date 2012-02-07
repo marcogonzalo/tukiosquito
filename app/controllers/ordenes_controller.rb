@@ -24,7 +24,11 @@ class OrdenesController < ApplicationController
   # GET /ordenes/new
   # GET /ordenes/new.json
   def new
-    @orden = Orden.new
+    @selecciones = Seleccion.where("cliente_id = ?",usuario_actual.id)
+    @peso_total = Seleccion.peso_total(usuario_actual.id)
+    @precio_total = Seleccion.precio_total(usuario_actual.id)
+    @tarjetas = usuario_actual.tdc
+    @orden = Orden.new(:direccion_entrega=>usuario_actual.direccion)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,13 +44,17 @@ class OrdenesController < ApplicationController
   # POST /ordenes
   # POST /ordenes.json
   def create
-    @orden = Orden.new(params[:orden])
-    if
-    else
-      session[:carro] = :nil
-      Seleccion.vaciar_carro(usuario_actual.id)
+    params[:orden][:cliente_id] = usuario_actual.id
+    params[:orden][:total] = Seleccion.precio_total(usuario_actual.id)
+    params[:orden][:fecha_entrega] = "0000-00-00"
+    
+    #if
+    #else
+    #  @orden = Orden.new(params[:orden])
+    #  session[:carro] = :nil
+    #  Seleccion.vaciar_carro(usuario_actual.id)
       redirect_to_index
-    end
+    #end
     
     respond_to do |format|
       if @orden.save
