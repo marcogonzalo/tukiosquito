@@ -5,20 +5,22 @@ class Producto < ActiveRecord::Base
   belongs_to :categorias
   belongs_to :subcategorias
   
+  before_save :default_image
+  
   validates :nombre,
             :presence => true,
             :length => 5..100
   validates :descripcion,
             :presence => true,
             :length => 5..255
-#  validates :categoria_id,
-#            :presence => true,
-#            :length => 1..3,
-#            :numericality => true
-#  validates :subcategoria_id,
-#            :presence => true,
-#            :length => 1..3,
-#            :numericality => true
+  validates :categoria_id,
+            :presence => true,
+            :length => 1..3,
+            :numericality => true
+  validates :subcategoria_id,
+            :presence => true,
+            :length => 1..3,
+            :numericality => true
   validates :precio,
             :presence => true,
             :numericality => { :greater_than => 0 },
@@ -45,4 +47,10 @@ class Producto < ActiveRecord::Base
             :length => 1..5
   validates :fecha_fin_venta,
             :presence => true
+                   
+  def default_image
+    unless imagen.present?
+      self.imagen = 'productos/imgprod.png'
+    end
+  end
 end

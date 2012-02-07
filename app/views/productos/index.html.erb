@@ -11,7 +11,7 @@
 
 <% @productos.each do |producto| %>
   <tr>
-    <td><%= link_to image_tag("producto/"+producto.imagen), producto %></td>
+    <td><%= link_to image_tag(producto.imagen,:height=>"100px",:width=>"100px"), producto %></td>
     <td><%= link_to producto.nombre, producto %></td>
     <td>Bs.<%= producto.precio %></td>
     <td><%= producto.cantidad %></td>

@@ -7,7 +7,7 @@
   Seleccionar
 <% end %></p>
 <details>
-  <%= image_tag("producto/" + @producto.imagen) unless @producto.imagen.nil? %> 
+  <%= image_tag(@producto.imagen) unless @producto.imagen.nil? %> 
   <p><%=h @producto.descripcion %></p>
   <p><%= number_to_currency(@producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %>
 </details>
