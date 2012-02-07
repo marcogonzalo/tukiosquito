@@ -20,8 +20,10 @@ class Cliente < ActiveRecord::Base
             :length => 5..10
   validates :correo_electronico, 
             :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i },
             :length => 10..100
-  validates :usuario, 
+  validates :usuario,
             :presence => true, 
             :uniqueness => true,
             :length => 5..50
@@ -44,9 +46,13 @@ class Cliente < ActiveRecord::Base
             :length => 5..50
 
   def self.autenticar(usuario, clave)
-    cliente = find_by_usuario(usuario)
-    if cliente and cliente.clave == Digest::MD5.hexdigest(clave)
-      cliente
+    cliente = Cliente.find_by_usuario(usuario)
+    if cliente 
+      if cliente.clave == Digest::MD5.hexdigest(clave)
+        cliente
+      else
+        nil
+      end
     else
       nil
     end

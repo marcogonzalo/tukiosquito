@@ -7,8 +7,10 @@ class Administrador < ActiveRecord::Base
             :length => 3..50
   validates :apellido,
             :length => 3..50
-  validates :correo_electronico, 
+  validates :correo_electronico,
             :presence => true,
+            :uniqueness => true,
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i },
             :length => 5..100
   validates :usuario, 
             :presence => true,

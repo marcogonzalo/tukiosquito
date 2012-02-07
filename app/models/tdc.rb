@@ -5,10 +5,7 @@ class Tdc < ActiveRecord::Base
   TIPO_TDC = ["Visa","Mastercard"]
   validates :numero,
             :presence => true,
-            :numericality => { 
-                                :only_integer => true,
-                                :greater_than => 0
-                             }, 
+            :format => { :with => /^[0-9]{16}$/i }, 
             :length => { :is => 16 }
   validates :tipo, 
             :presence => true,
@@ -36,4 +33,5 @@ class Tdc < ActiveRecord::Base
   validates :tarjetahabiente,
             :presence => true,
             :length => 5..100
+
 end
