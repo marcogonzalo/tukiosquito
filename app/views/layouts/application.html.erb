@@ -11,8 +11,9 @@
   TuKiosquito.com
     <div id="nav_usuario">  
     <% if usuario_actual then %>  
-      En sesi&oacute;n como <b><%= usuario_actual.usuario %></b>  
-      <%= link_to "Cerrar sesión", cerrar_sesion_cliente_path %>  
+      En sesi&oacute;n como <b><%= usuario_actual.usuario %></b>
+      | <%= link_to 'Ver carrito', carrito_path %>
+      | <%= link_to "Cerrar sesión", cerrar_sesion_cliente_path %>  
     <% elsif admin_actual then %>  
       En sesi&oacute;n como <b><%= admin_actual.usuario %></b> (admin)
       <%= link_to "Cerrar sesión de admin", cerrar_sesion_admin_path %>  
