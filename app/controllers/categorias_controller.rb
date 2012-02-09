@@ -1,4 +1,5 @@
 class CategoriasController < ApplicationController
+#  before_filter :es_admin
   # GET /categorias
   # GET /categorias.json
   def index

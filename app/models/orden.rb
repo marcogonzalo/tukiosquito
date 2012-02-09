@@ -5,7 +5,7 @@ class Orden < ActiveRecord::Base
   belongs_to :tdc
   belongs_to :clientes
   
-  validates :usuario_id,
+  validates :cliente_id,
             :numericality => true,
             :presence => true
   validates :tarjeta_id,
@@ -17,6 +17,6 @@ class Orden < ActiveRecord::Base
   validates :total,
             :numericality => true,
             :presence => true
-  validates :fecha_entrega,
-            :presence => true
+#  validates :fecha_entrega,
+#            :presence => true
 end

@@ -23,7 +23,7 @@
 
     <% @tarjetas.each do |tdc| %>
     <tr>
-      <td><%= radio_button_tag :tarjeta_id, tdc.id, :class=>"validate[required]" %></td>
+      <td><%= f.radio_button :tarjeta_id, tdc.id, :class=>"validate[required]" %></td>
       <td><%= tdc.numero %></td>
       <td><%= tdc.tipo %></td>
       <td><%= tdc.tarjetahabiente %></td>

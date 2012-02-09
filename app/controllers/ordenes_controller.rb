@@ -1,4 +1,6 @@
 class OrdenesController < ApplicationController
+  before_filter :es_usuario
+  skip_before_filter :es_usuario, :only=>[:new, :create]
   # GET /ordenes
   # GET /ordenes.json
   def index
@@ -24,15 +26,17 @@ class OrdenesController < ApplicationController
   # GET /ordenes/new
   # GET /ordenes/new.json
   def new
-    @selecciones = Seleccion.where("cliente_id = ?",usuario_actual.id)
-    @peso_total = Seleccion.peso_total(usuario_actual.id)
-    @precio_total = Seleccion.precio_total(usuario_actual.id)
-    @tarjetas = usuario_actual.tdc
-    @orden = Orden.new(:direccion_entrega=>usuario_actual.direccion)
-
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @orden }
+      @selecciones = Seleccion.where("cliente_id = ?",usuario_actual.id)
+      unless @selecciones.empty?
+        @peso_total = Seleccion.peso_total(usuario_actual.id)
+        @precio_total = Seleccion.precio_total(usuario_actual.id)
+        @tarjetas = usuario_actual.tdc
+        @orden = Orden.new(:direccion_entrega=>usuario_actual.direccion)
+        format.html # new.html.erb
+      else
+        format.html { redirect_to carrito_path, notice: 'No tiene productos agregados al carro de compras para generar una orden.' }
+      end
     end
   end
 
@@ -44,25 +48,40 @@ class OrdenesController < ApplicationController
   # POST /ordenes
   # POST /ordenes.json
   def create
+    @selecciones = Seleccion.where("cliente_id = ?",usuario_actual.id)
+    @peso_total = Seleccion.peso_total(usuario_actual.id)
+    @precio_total = Seleccion.precio_total(usuario_actual.id)
+    @tarjetas = usuario_actual.tdc
     params[:orden][:cliente_id] = usuario_actual.id
     params[:orden][:total] = Seleccion.precio_total(usuario_actual.id)
     params[:orden][:fecha_entrega] = "0000-00-00"
     
-    #if
-    #else
-    #  @orden = Orden.new(params[:orden])
-    #  session[:carro] = :nil
-    #  Seleccion.vaciar_carro(usuario_actual.id)
-      redirect_to_index
+    #if error.eql?(0)
+      @orden = Orden.new(params[:orden])
     #end
     
-    respond_to do |format|
-      if @orden.save
-        format.html { redirect_to @orden, notice: 'Orden was successfully created.' }
-        format.json { render json: @orden, status: :created, location: @orden }
-      else
+    if @orden.save
+      @selecciones = Seleccion.where("cliente_id = ?",usuario_actual.id)
+      @selecciones.each do |seleccion|
+        #params[:venta][:producto_id] = seleccion.producto_id
+        #params[:venta][:orden_id] = @orden.id
+        #params[:venta][:cantidad] = seleccion.cantidad
+        #params[:venta][:costo] = 0
+        @venta = Venta.new(:producto_id=>seleccion.producto_id, 
+                            :orden_id=>@orden.id,
+                            :cantidad=>seleccion.cantidad,
+                            :costo=>0)#params[:venta])
+        @venta.save
+      end
+      Seleccion.vaciar_carro(usuario_actual.id)
+      respond_to do |format|
+        format.html { redirect_to ver_ordenes_path, notice: 'Orden generada correctamente.' }
+        #format.json { render json: @orden, status: :created, location: @orden }
+      end
+    else
+      respond_to do |format|
         format.html { render action: "new" }
-        format.json { render json: @orden.errors, status: :unprocessable_entity }
+        #format.json { render json: @orden.errors, status: :unprocessable_entity }
       end
     end
   end

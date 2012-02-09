@@ -1,6 +1,8 @@
 class FacturasDistribuidoresController < ApplicationController
+#  before_filter :es_admin
   # GET /facturas_distribuidores
   # GET /facturas_distribuidores.json
+  
   def index
     @facturas_distribuidores = FacturaDistribuidor.all
 

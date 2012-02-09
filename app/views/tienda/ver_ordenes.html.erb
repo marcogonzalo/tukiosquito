@@ -1,0 +1,18 @@
+<h1>&Oacute;rdenes procesadas</h1>
+<% @ordenes.each do |orden| %>
+<div class="orden">
+  <h2>Fecha de compra: <%= orden.created_at.to_s(:dia_mes_ano) %></h2>
+  <p>Total: <%= number_to_currency(orden.total, :unit=>"Bs", :delimeter=>".", :separator=>",") %>
+  <h3>Productos</h3>
+  <% orden.ventas.each do |venta| 
+  p = Producto.find(venta.producto_id)
+  %>
+  <div class="orden_producto">
+    <h4><%= p.nombre %></h4>
+    <p><%= image_tag(p.imagen,:height=>"100px",:width=>"100px") %></p>
+    <p>Cantidad comprada: <%= venta.cantidad %></p>
+  </div>
+  <% end %>
+</div>
+<hr>
+<% end %>

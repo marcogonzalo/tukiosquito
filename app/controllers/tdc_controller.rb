@@ -1,4 +1,5 @@
 class TdcController < ApplicationController
+  before_filter :es_usuario
   # GET /tdc
   # GET /tdc.json
   def index

@@ -4,9 +4,18 @@ class ApplicationController < ActionController::Base
   helper_method :admin_actual
   
   def es_usuario
+    unless usuario_identificado?
+      flash[:error] = "Debe identificarse en el sistema para acceder."
+      session[:back] = :back
+      redirect_to iniciar_sesion_cliente_path
+    end
   end
   
   def es_admin
+    unless admin_identificado?
+      flash[:error] = "Debe identificarse en el sistema para acceder."
+      redirect_to iniciar_sesion_admin_path
+    end
   end
 
   private
@@ -16,5 +25,13 @@ class ApplicationController < ActionController::Base
   
   def admin_actual  
     @admin_actual ||= Administrador.find(session[:admin_id]) if session[:admin_id]
+  end
+  
+  def usuario_identificado?
+    !!usuario_actual
+  end
+  
+  def admin_identificado?
+    !!admin_actual
   end
 end

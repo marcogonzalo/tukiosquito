@@ -20,6 +20,7 @@ Tukiosquito::Application.routes.draw do
   match "/vaciar_carro" => "tienda#vaciar_carro"
   match "/carrito" => "tienda#carrito", :as => "carrito"
   match "/carrito/cambiar_cantidad" => "tienda#cambiar_cantidad"
+  match "/ver_ordenes" => "tienda#ver_ordenes", :as => "ver_ordenes"
 
   #RECURSOS GENERALES
   resources :subcategorias

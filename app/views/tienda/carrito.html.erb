@@ -16,7 +16,7 @@
     <td><%= link_to producto.nombre, producto %></td>
     <td class="dinero"><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
     <td>
-    <%= form_tag({:action=>'cambiar_cantidad', :id=>seleccion.id}) do %>
+    <%= form_tag({:action=>'cambiar_cantidad', :producto_id=>seleccion.producto_id}) do %>
       <%= seleccion.cantidad %>
       <% if seleccion.cantidad <= 1 %>
         <%= button_tag "-", :name=>"reducir_cantidad", :disabled=>true %>
@@ -30,8 +30,8 @@
       <% end %>
     <% end %>
     </td>
-    <td><%= button_to "Quitar", :action=>'quitar_del_carro', :id=>producto.id %></td>
+    <td><%= button_to "Quitar", :action=>'quitar_del_carro', :id=>seleccion.id %></td>
   </tr>
 <% end %>
 </table>
-<div><%= link_to "Generar orden", new_orden_path, :class=>"boton-siguiente" %></div>
+<div><%= link_to("Generar orden", new_orden_path, :class=>"boton-siguiente") unless @selecciones.empty? %></div>

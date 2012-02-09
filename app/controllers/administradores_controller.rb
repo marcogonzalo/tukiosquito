@@ -1,4 +1,6 @@
 class AdministradoresController < ApplicationController
+#  before_filter :es_admin
+#  skip_before_filter :es_admin, :only => [:new, :create]
   # GET /administradores
   # GET /administradores.json
   def index

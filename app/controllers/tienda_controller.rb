@@ -1,4 +1,6 @@
 class TiendaController < ApplicationController
+  before_filter :es_usuario
+  skip_before_filter :es_usuario, :only=>[:index]
   def index
     @categorias = Categoria.all
     cat = params[:cat_id].to_i
@@ -50,9 +52,9 @@ class TiendaController < ApplicationController
   end
   
   def cambiar_cantidad
-    id = params[:id].to_i
-    if id > 0
-      seleccion = Seleccion.where("producto_id = ? AND cliente_id = ?",params[:id],usuario_actual.id).first()
+    producto_id = params[:producto_id].to_i
+    if producto_id > 0
+      seleccion = Seleccion.where("producto_id = ? AND cliente_id = ?",producto_id,usuario_actual.id).first()
       if params[:aumentar_cantidad]
         Seleccion.aumentar_cantidad_producto(seleccion.id)
       elsif params[:reducir_cantidad]
@@ -62,10 +64,8 @@ class TiendaController < ApplicationController
     redirect_to carrito_path
   end
   
-  def reducir_cantidad
-    seleccion = Seleccion.where("producto_id = ? AND cliente_id = ?",params[:id],usuario_actual.id).first()
-    Seleccion.reducir_cantidad_producto(seleccion.id)
-    redirect_to carrito_path
+  def ver_ordenes
+    @ordenes = usuario_actual.ordenes
   end
   
   private
