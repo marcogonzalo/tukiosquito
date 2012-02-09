@@ -1,3 +1,4 @@
+<h1>Carrito de compras</h1>
 <table>
   <tr>
     <th>Imagen</th>
@@ -12,10 +13,10 @@
     producto = seleccion.ver_producto
 %>
   <tr>
-    <td><%= link_to image_tag(producto.imagen,:height=>"100px",:width=>"100px"), producto %></td>
+    <td class="alcentro"><%= link_to image_tag(producto.imagen,:height=>"100px",:width=>"100px"), producto %></td>
     <td><%= link_to producto.nombre, producto %></td>
-    <td class="dinero"><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
-    <td>
+    <td class="alcentro"><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+    <td class="aladerecha">
     <%= form_tag({:action=>'cambiar_cantidad', :producto_id=>seleccion.producto_id}) do %>
       <%= seleccion.cantidad %>
       <% if seleccion.cantidad <= 1 %>
@@ -30,8 +31,8 @@
       <% end %>
     <% end %>
     </td>
-    <td><%= button_to "Quitar", :action=>'quitar_del_carro', :id=>seleccion.id %></td>
+    <td class="alcentro"><%= button_to "Quitar", :action=>'quitar_del_carro', :id=>seleccion.id %></td>
   </tr>
 <% end %>
 </table>
-<div><%= link_to("Generar orden", new_orden_path, :class=>"boton-siguiente") unless @selecciones.empty? %></div>
+<div><%= button_to "Comprar", new_orden_path, :method=>'get', :class=>"submit" unless @selecciones.empty? %></div>

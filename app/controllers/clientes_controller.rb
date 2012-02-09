@@ -1,6 +1,7 @@
 class ClientesController < ApplicationController
+  layout "cliente"
   before_filter :es_usuario
-  skip_before_filter :es_usuario, :only=>[:new, :create, :iniciar_sesion]
+  skip_before_filter :es_usuario, :only=>[:new, :create, :iniciar_sesion, :index]
   # GET /clientes
   # GET /clientes.json
   def index
@@ -88,7 +89,7 @@ class ClientesController < ApplicationController
       cliente ||= Cliente.autenticar(params[:usuario], params[:clave])  
       if cliente
         session[:cliente_id] = cliente.id  
-        redirect_to session[:back], :notice => "Sesi&oacute;n iniciada correctamente."
+        redirect_to root_url, :notice => "Sesi&oacute;n iniciada correctamente."
       else
         flash.now.alert = "Usuario o clave inv&aacute;lidos."
         render "iniciar_sesion"

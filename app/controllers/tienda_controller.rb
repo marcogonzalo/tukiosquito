@@ -1,4 +1,5 @@
 class TiendaController < ApplicationController
+  layout :definir_layout
   before_filter :es_usuario
   skip_before_filter :es_usuario, :only=>[:index]
   def index
@@ -73,4 +74,14 @@ class TiendaController < ApplicationController
     flash[:notice] = msg if msg
     redirect_to :action => 'index'
   end
+  
+  def definir_layout
+    case action_name
+    when "carrito", "ver_ordenes"
+      "cliente"
+    else
+      "application"
+    end
+  end
+
 end

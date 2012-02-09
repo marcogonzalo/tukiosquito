@@ -13,13 +13,13 @@
 
 <% @productos.each do |producto| %>
   <tr>
-    <td><%= link_to ("<img src=\""+producto.id.to_s+"\">").html_safe, producto %></td>
+    <td class="alcentro"><%= link_to image_tag(producto.imagen,:height=>"100px",:width=>"100px"), producto %></td>
     <td><%= link_to producto.nombre, producto %></td>
-    <td><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>",") %></td>
-    <td><%= producto.cantidad %></td>
-    <td>
+    <td class="alcentro"><%= number_to_currency(producto.precio, :unit=>"Bs", :delimeter=>",") %></td>
+    <td class="alcentro"><%= producto.cantidad %></td>
+    <td class="alcentro">
   <% if usuario_actual then %>  
-      <%= button_to "Agregar", :action=>'agregar_al_carro', :id=>producto.id %>
+      <%= button_to "Agregar", {:action=>'agregar_al_carro', :id=>producto.id}, :class=>"uibutton"  %>
   <% else %>
       Seleccionar
   <% end %>

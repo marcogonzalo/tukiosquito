@@ -29,10 +29,15 @@
   <% end %>
   <div class="container">
     <nav class="span-4">
-      <p><b>Categor&iacute;as</b></p>
-      <ul id="categorias">
-      <% Categoria.all.each do |c| %>
-        <li><%= link_to c.nombre, '/c-'+c.id.to_s %></li>
+      <p><b>Secciones</b></p>
+      <ul id="secciones">
+      <% if usuario_actual then %>  
+        <li><%= link_to "Perfil", usuario_actual %></li>
+        <li><%= link_to "Ver carrito", carrito_path %></li>
+        <li><%= link_to "Ver órdenes", ver_ordenes_path %></li>
+      <% else %>    
+        <li><%= link_to "Registrarse", registro_cliente_path %></li>
+        <li><%= link_to "Iniciar sesión", iniciar_sesion_cliente_path %></li>
       <% end %>
       </ul>
     </nav>

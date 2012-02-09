@@ -1,3 +1,117 @@
+h1 {
+  background:url("../images/search_bg.png") repeat scroll 0pt 0pt rgb(44, 73, 89);
+  border:1px solid rgb(20, 32, 39);
+  border-radius:6px;
+  color:white;
+  font-size:2.5em;
+  padding:0.5em 1em;
+}
+h2 {font-size:1.8em;}
+h3 {font-size:1.4em;}
+h4 {font-size:1.2em;}
+header {
+  background: url("../images/striped_bg.png") repeat scroll 0pt 0pt transparent;
+  border-bottom:thin solid silver;
+  height:175px;
+  width:100%;
+}
 hr {clear:both;margin:1em auto 0 auto;}
+table input[type=submit], table input[type=button], table button {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #EEEEEE;
+    background-image: -moz-linear-gradient(#F5F6F6, #E4E4E3);
+    border-color: #999999 #999999 #888888;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 #FFFFFF inset;
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font: bold 11px 'lucida grande',tahoma,verdana,arial,sans-serif;
+    margin: 0;
+    overflow: visible;
+    padding: 0.3em 0.6em 0.375em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    z-index: 1;
+}
 nav {float:left;}
+nav a {
+  color:#797979;
+  text-decoration:none;
+}
+nav ul { 
+  font-size:small;
+  list-style:none;
+  padding:0;
+}
+nav li {
+  width:100px;
+	border-bottom: 1px dotted #BDBD9D;
+}
+table th {
+  background:url("../images/search_bg.png") repeat scroll 0pt 0pt rgb(44, 73, 89);
+  border:thin solid rgb(20, 32, 39);
+  color:white;
+  text-align:center;
+}
+table td {
+  border:thin solid silver;
+  color:black;
+}
+table td, table th {
+  border-radius:6px;
+  padding:0.2em 1em;
+}
 textarea {width:25em;height:10em;padding:5px;}
+#nav_usuario {
+  background: url("../images/main_nav_item_bg.png") repeat scroll 0pt 0pt rgb(57, 57, 57);
+  border-bottom:thin solid black;
+  color:white;
+  padding:0.3em;
+  width:100%;
+}
+#nav_usuario a {
+  color:rgb(183, 205, 120);
+  text-decoration:none;
+}
+.aladerecha {text-align:right;}
+.alaizquierda {text-align:left;}
+.alcentro {text-align:center;}
+.container {
+  -moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: #E6E7E8 #E6E7E8 -moz-use-text-color;
+	border-style: solid solid none;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-width: 1px 1px medium;
+	margin-top: -45px;
+	padding: 20px 20px 10px;
+	position: relative;
+}
+.submit {
+    background: url("../images/search_btn_bg.png") repeat scroll 0 0 transparent;
+    border: medium none;
+    clear: left;
+    color: #49630A;
+    float: left;
+    font-family: UbuntuRegular,"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 21px;
+    font-weight: bold;
+    height: 44px;
+    margin: 0;
+    padding: 5px 15px;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
+    width: 108px;
+}

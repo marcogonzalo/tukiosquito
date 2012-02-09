@@ -1,4 +1,5 @@
 class OrdenesController < ApplicationController
+  layout :definir_layout
   before_filter :es_usuario
   skip_before_filter :es_usuario, :only=>[:new, :create]
   # GET /ordenes
@@ -111,6 +112,17 @@ class OrdenesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ordenes_url }
       format.json { head :ok }
+    end
+  end
+  
+  private
+  
+  def definir_layout
+    case action_name
+    when "new"
+      "cliente"
+    else
+      "application"
     end
   end
 end
