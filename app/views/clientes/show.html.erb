@@ -1,5 +1,7 @@
+<h1>Mi perfil</h1>
 <p id="notice"><%= notice %></p>
 
-
-<%= link_to 'Editar', edit_cliente_path(@cliente) %> |
-<%= link_to 'Volver', clientes_path %>
+<p><%= @cliente.nombre+' '+@cliente.apellido %> (<%= @cliente.usuario %>)</p>
+<p>Correo-e: <%= @cliente.correo_electronico %></p>
+<p>Tel&eacute;fono: <%= @cliente.telefono %></p>
+<%= link_to 'Editar', edit_cliente_path(@cliente) %>

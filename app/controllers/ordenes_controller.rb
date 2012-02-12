@@ -1,4 +1,6 @@
 class OrdenesController < ApplicationController
+  require 'soap/rpc/driver'
+  
   layout :definir_layout
   before_filter :es_usuario
   skip_before_filter :es_usuario, :only=>[:new, :create]
@@ -56,6 +58,14 @@ class OrdenesController < ApplicationController
     params[:orden][:cliente_id] = usuario_actual.id
     params[:orden][:total] = Seleccion.precio_total(usuario_actual.id)
     params[:orden][:fecha_entrega] = "0000-00-00"
+    
+    #NAMESPACE = 'pagotdc'
+    #URL = 'http://localhost:8080/'
+    #banco = SOAP::RPC::Driver.new(URL, NAMESPACE)
+    #banco.add_method('verificar_pago', 'numero_tdc', 'nombre_tarjetahabiente', 'fecha_vencimiento', 'codigo_seguridad', 'tipo_tarjeta', 'direccion_cobro', 'total_pagar', 'cuenta_receptora')
+    #tdc = Tarjeta.where("id = ? AND cliente_id = ?",params[:orden][:tarjeta_id],usuario_actual.id)
+    
+    #respuesta = banco.verificar_pago(tdc.numero, tdc.tarjetahabiente, tdc.mes_vencimiento.to_s+'/'+tdc.ano_vencimiento.to_s, tdc.codigo, tdc.tipo, params[:orden][:total], tdc.direccion)
     
     #if error.eql?(0)
       @orden = Orden.new(params[:orden])
