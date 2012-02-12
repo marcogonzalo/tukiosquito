@@ -91,6 +91,7 @@ GEM
     turn (0.8.3)
       ansi
     tzinfo (0.3.30)
+    wicked_pdf (0.7.2)
 
 PLATFORMS
   ruby
@@ -102,3 +103,4 @@ DEPENDENCIES
   sqlite3
   therubyracer
   turn
+  wicked_pdf
