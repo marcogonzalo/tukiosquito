@@ -100,18 +100,37 @@ textarea {width:25em;height:10em;padding:5px;}
 	padding: 20px 20px 10px;
 	position: relative;
 }
+.orden {
+  background:#fc6;
+  border:3px solid #fc3;
+  border-radius:6px;
+  padding:1em;
+}
+.orden_producto {
+  background:#fc6;
+  border:3px solid white;
+  border-radius:6px;
+  clear:both;
+  padding:0.5em;
+  margin:0.25em;
+}
+.orden_producto img {
+  float:left;
+  margin:0.25em;
+}
 .submit {
-    background: url("../images/search_btn_bg.png") repeat scroll 0 0 transparent;
-    border: medium none;
-    clear: left;
-    color: #49630A;
-    float: left;
-    font-family: UbuntuRegular,"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-    font-size: 21px;
-    font-weight: bold;
-    height: 44px;
-    margin: 0;
-    padding: 5px 15px;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
-    width: 108px;
+  background: url("../images/search_btn_bg.png") repeat scroll 0 0 transparent;
+  border:medium none;
+  clear:left;
+  color:#49630A;
+  cursor:pointer;
+  float:left;
+  font-family:UbuntuRegular,"Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+  font-size:21px;
+  font-weight:bold;
+  height:44px;
+  margin:0;
+  padding:5px 15px;
+  text-shadow:0 1px 3px rgba(255, 255, 255, 0.7);
+  width:108px;
 }
