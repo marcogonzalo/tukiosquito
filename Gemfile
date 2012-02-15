@@ -7,7 +7,10 @@ gem 'rails', '3.1.1'
 
 gem 'sqlite3'
 gem 'wicked_pdf'
-gem 'soap4r'
+gem 'soap4r-ruby1.9'
+#gem 'soap4r', :git => 'git://github.com/felipec/soap4r.git'
+gem 'httpclient'
+gem 'xml-simple'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -15,7 +18,6 @@ gem 'soap4r'
 group :development do
   gem 'execjs'
   gem 'therubyracer'
-
   gem 'jquery-rails'
 end
 
