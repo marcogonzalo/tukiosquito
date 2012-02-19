@@ -1,0 +1,18 @@
+<h1>Monto generado por cada categor&iacute;a</h1>
+<table>
+  <tr>
+    <th>Nombre del cliente</th>
+    <th>Nombre de usuario</th>
+    <th>&Oacute;rdenes realizadas</th>
+  </tr>
+<% 
+  @clientes.each do |cliente| 
+    cli = Cliente.find(cliente.cliente_id)
+%>
+  <tr>
+    <td class="alaizquierda"><%= cli.nombre+" "+cli.apellido %></td>
+    <td class="alcentro"><%= cli.usuario %></td>
+    <td class="aladerecha"><%= cliente.total_ordenes %></td>
+  </tr>
+<% end %>
+</table>

@@ -6,6 +6,7 @@ class Producto < ActiveRecord::Base
   belongs_to :subcategorias
   
   before_save :default_image
+  before_save :fecha_fin
   
   validates :nombre,
             :presence => true,
@@ -45,12 +46,14 @@ class Producto < ActiveRecord::Base
             :presence => true,
             :numericality => true,
             :length => 1..5
-  validates :fecha_fin_venta,
-            :presence => true
                    
   def default_image
     unless imagen.present?
       self.imagen = 'productos/imgprod.png'
     end
+  end
+  
+  def fecha_fin
+    self.fecha_fin_venta = '0000-00-00'
   end
 end

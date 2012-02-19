@@ -14,7 +14,7 @@ class CreateProductos < ActiveRecord::Migration
       t.integer :largo, :limit => 5
       t.string :imagen, :default=>"productos/imgprod.png"
       t.boolean :resaltar, :default=>false 
-      t.date    :fecha_fin_venta, :null=>false
+      t.date    :fecha_fin_venta
       t.timestamps
     end
   end

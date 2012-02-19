@@ -1,6 +1,7 @@
 class Categoria < ActiveRecord::Base
   has_many :subcategorias
   has_many :productos
+  has_many :ventas
   
   validates :nombre,
             :presence => true,

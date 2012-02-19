@@ -3,6 +3,7 @@ class CreateSelecciones < ActiveRecord::Migration
     create_table :selecciones do |t|
       t.integer :cliente_id
       t.integer :producto_id
+      t.integer :categoria_id
       t.integer :cantidad
 
       t.timestamps

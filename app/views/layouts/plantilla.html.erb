@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TuKiosquito.com - El Kiosco electr&oacute;nico</title>
+  <%= wicked_pdf_stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+  <%= wicked_pdf_image_tag("tklogo.png",:alt=>"TuKiosquito.com", :title=>"TuKiosquito.com") %>
+  </header>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <hr>
+  <footer>TuKiosquito.com</footer>
+</body>
+</html>

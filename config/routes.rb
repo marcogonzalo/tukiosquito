@@ -21,6 +21,9 @@ Tukiosquito::Application.routes.draw do
   match "/carrito" => "tienda#carrito", :as => "carrito"
   match "/carrito/cambiar_cantidad" => "tienda#cambiar_cantidad"
   match "/ver_ordenes" => "tienda#ver_ordenes", :as => "ver_ordenes"
+  
+  #REPORTES
+  match 'reportes/:action(.:format)', :controller => 'reportes'
 
   #RECURSOS GENERALES
   resources :subcategorias
@@ -32,6 +35,9 @@ Tukiosquito::Application.routes.draw do
   resources :administradores
   resources :tdc
   resources :clientes
+
+  #SERVICIOS WEB
+  wash_out :servicios
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

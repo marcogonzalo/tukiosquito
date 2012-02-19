@@ -1,0 +1,16 @@
+<h1>Monto generado por cada categor&iacute;a</h1>
+<table>
+  <tr>
+    <th>Nombre de la categor&iacute;a</th>
+    <th>Monto generado</th>
+  </tr>
+<% 
+  @categorias.each do |categoria| 
+    cat = Categoria.find(categoria.categoria_id)
+%>
+  <tr>
+    <td class="alcentro"><%= cat.nombre %></td>
+    <td class="aladerecha"><%= number_to_currency(categoria.total, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+  </tr>
+<% end %>
+</table>

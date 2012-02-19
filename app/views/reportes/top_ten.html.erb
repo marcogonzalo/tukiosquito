@@ -1,0 +1,16 @@
+<h1>Productos m&aacute;s vendidos</h1>
+<table>
+  <tr>
+    <th>Nombre de la categor&iacute;a</th>
+    <th>Monto generado</th>
+  </tr>
+<% 
+  @productos.each do |producto| 
+    p = Producto.find(producto.producto_id)
+%>
+  <tr>
+    <td class="alcentro"><%= p.nombre %></td>
+    <td class="aladerecha"><%= number_to_currency(producto.total, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+  </tr>
+<% end %>
+</table>

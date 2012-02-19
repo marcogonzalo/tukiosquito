@@ -7,7 +7,8 @@ class Seleccion < ActiveRecord::Base
     unless producto_actual.nil?
       producto_actual.cantidad += 1
     else
-      producto_actual = Seleccion.new(:cliente_id => cliente_id, :producto_id => producto_id, :cantidad => 1)
+      producto = Producto.find(producto_id)
+      producto_actual = Seleccion.new(:cliente_id => cliente_id, :producto_id => producto.id, :categoria_id => producto.categoria_id, :cantidad => 1)
     end
     producto_actual.save
   end

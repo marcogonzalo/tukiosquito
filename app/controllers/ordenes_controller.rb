@@ -1,8 +1,9 @@
 class OrdenesController < ApplicationController
-  require 'httpclient'
-  require 'soap/rpc/driver'
-  require 'rubygems'
+  #require 'httpclient'
+  #require 'soap/rpc/driver'
+  #require 'rubygems'
   require 'xmlsimple'
+  #require 'savon'
   
   layout :definir_layout
   before_filter :es_usuario
@@ -40,59 +41,11 @@ class OrdenesController < ApplicationController
         @precio_total = Seleccion.precio_total(usuario_actual.id)
         @tarjetas = usuario_actual.tdc
         @orden = Orden.new(:direccion_entrega=>usuario_actual.direccion)
-        @arreglo = XmlSimple.xml_in('<solicitud_pedido>
-    <num_orden>2312</num_orden>
-    <nombre_comercio>23123</nombre_comercio>
-    <fecha_solicitud>123213</fecha_solicitud>
-    <nombre_cliente>213123</nombre_cliente>
-    <direccion_comercio>
-        <avenida>213123</avenida>
-        <calle>213123</calle>
-        <edificio_casa></edificio_casa>
-        <local_apt></local_apt>
-        <parroquia></parroquia>
-        <municipio></municipio>
-        <ciudad></ciudad>
-        <estado></estado>
-        <pais></pais>
-    </direccion_comercio>
-    <direccion_destino>
-        <avenida></avenida>
-        <calle></calle>
-        <edificio_casa></edificio_casa>
-        <local_apt></local_apt>
-        <parroquia> </parroquia>
-        <municipio></municipio>
-        <ciudad></ciudad>
-        <estado></estado>
-        <pais></pais>   
-    </direccion_destino>
-    <articulo>
-        <id></id>
-        <descripcion></descripcion>
-        <peso></peso>
-        <cantidad></cantidad>
-        <precio></precio>
-    </articulo>
-    <articulo>
-        <id>1</id>
-        <descripcion></descripcion>
-        <peso></peso>
-        <cantidad></cantidad>
-        <precio></precio>
-    </articulo>
-    <articulo>
-        <id>2</id>
-        <descripcion></descripcion>
-        <peso></peso>
-        <cantidad></cantidad>
-        <precio></precio>
-    </articulo>
-</solicitud_pedido>')
+        #@arreglo = XmlSimple.xml_in('')
         #@xml = XmlSimple.xml_out(@arreglo, { 'RootName' => 'solicitud_pedido' })
-        url = 'http://192.168.1.101/Antonio/tukyosquito/proyecto/servicio/servicio.php'
-        cotizacion = SOAP::RPC::Driver.new(url)
-        cotizacion.add_method('obtener','asd')
+        #url = 'http://192.168.1.101/Antonio/tukyosquito/proyecto/servicio/servicio.php'
+        #cotizacion = SOAP::RPC::Driver.new(url)
+        #cotizacion.add_method('obtener','asd')
         #tdc = Tarjeta.where("id = ? AND cliente_id = ?",params[:orden][:tarjeta_id],usuario_actual.id)
         #@respuesta = cotizacion.obtener('123')
         format.html # new.html.erb
@@ -137,10 +90,12 @@ class OrdenesController < ApplicationController
         #params[:venta][:orden_id] = @orden.id
         #params[:venta][:cantidad] = seleccion.cantidad
         #params[:venta][:costo] = 0
-        @venta = Venta.new(:producto_id=>seleccion.producto_id, 
+        p = Producto.find(seleccion.producto_id)
+        @venta = Venta.new(:producto_id=>p.id, 
                             :orden_id=>@orden.id,
+                            :categoria_id=>p.categoria_id, 
                             :cantidad=>seleccion.cantidad,
-                            :costo=>0)#params[:venta])
+                            :costo=>p.precio)#params[:venta])
         @venta.save
       end
       Seleccion.vaciar_carro(usuario_actual.id)

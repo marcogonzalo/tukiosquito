@@ -1,6 +1,7 @@
 class Venta < ActiveRecord::Base
   belongs_to :ordenes
   belongs_to :productos
+  belongs_to :categorias
   
   validates :producto_id,
             :presence => true,

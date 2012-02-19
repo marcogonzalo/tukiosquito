@@ -67,19 +67,19 @@ ActiveRecord::Schema.define(:version => 20120129030400) do
   end
 
   create_table "productos", :force => true do |t|
-    t.string   "nombre",          :limit => 100,                    :null => false
-    t.string   "descripcion",                                       :null => false
-    t.integer  "categoria_id",    :limit => 3,                      :null => false
+    t.string   "nombre",          :limit => 100,                                      :null => false
+    t.string   "descripcion",                                                         :null => false
+    t.integer  "categoria_id",    :limit => 3,                                        :null => false
     t.integer  "subcategoria_id", :limit => 3
-    t.float    "precio",                                            :null => false
-    t.integer  "cantidad",        :limit => 5,                      :null => false
-    t.float    "peso",            :limit => 2,                      :null => false
+    t.float    "precio",                                                              :null => false
+    t.integer  "cantidad",        :limit => 5,                                        :null => false
+    t.float    "peso",            :limit => 2,                                        :null => false
     t.integer  "alto",            :limit => 5
     t.integer  "ancho",           :limit => 5
     t.integer  "largo",           :limit => 5
-    t.string   "imagen"
+    t.string   "imagen",                         :default => "productos/imgprod.png"
     t.boolean  "resaltar",                       :default => false
-    t.date     "fecha_fin_venta",                                   :null => false
+    t.date     "fecha_fin_venta"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20120129030400) do
   create_table "selecciones", :force => true do |t|
     t.integer  "cliente_id"
     t.integer  "producto_id"
+    t.integer  "categoria_id"
     t.integer  "cantidad"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -112,11 +113,11 @@ ActiveRecord::Schema.define(:version => 20120129030400) do
   end
 
   create_table "ventas", :force => true do |t|
-    t.integer  "producto_id",                :null => false
-    t.integer  "orden_id",                   :null => false
-    t.integer  "cantidad",    :default => 1, :null => false
-    t.float    "costo",                      :null => false
-    t.integer  "vendidos",    :default => 0, :null => false
+    t.integer  "producto_id",                 :null => false
+    t.integer  "orden_id",                    :null => false
+    t.integer  "categoria_id",                :null => false
+    t.integer  "cantidad",     :default => 1, :null => false
+    t.float    "costo",                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
