@@ -1,6 +1,9 @@
 Tukiosquito::Application.routes.draw do
 
   root :to => 'tienda#index'
+
+  #SERVICIOS WEB
+  wash_out :servicios
  
   #CLIENTES
   match "iniciar_sesion" => "clientes#iniciar_sesion", :as => "iniciar_sesion_cliente"
@@ -35,9 +38,6 @@ Tukiosquito::Application.routes.draw do
   resources :administradores
   resources :tdc
   resources :clientes
-
-  #SERVICIOS WEB
-  wash_out :servicios
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

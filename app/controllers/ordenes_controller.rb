@@ -3,7 +3,7 @@ class OrdenesController < ApplicationController
   #require 'soap/rpc/driver'
   #require 'rubygems'
   require 'xmlsimple'
-  #require 'savon'
+  require 'savon'
   
   layout :definir_layout
   before_filter :es_usuario
@@ -41,6 +41,15 @@ class OrdenesController < ApplicationController
         @precio_total = Seleccion.precio_total(usuario_actual.id)
         @tarjetas = usuario_actual.tdc
         @orden = Orden.new(:direccion_entrega=>usuario_actual.direccion)
+        
+        client = Savon::Client.new("http://localhost:3001/servicios/wsdl")
+        response = client.request :prueba, body: { "value" => "prueba" }  
+        if response.success?  
+          data = response.to_hash[:prueba_response][:value]
+          @respuesta = XmlSimple.xml_in(data)
+        end
+   
+        #@respuesta = response.to_xml
         #@arreglo = XmlSimple.xml_in('')
         #@xml = XmlSimple.xml_out(@arreglo, { 'RootName' => 'solicitud_pedido' })
         #url = 'http://192.168.1.101/Antonio/tukyosquito/proyecto/servicio/servicio.php'
@@ -71,6 +80,27 @@ class OrdenesController < ApplicationController
     params[:orden][:total] = Seleccion.precio_total(usuario_actual.id)
     params[:orden][:fecha_entrega] = "0000-00-00"
     
+    client = Savon::Client.new("http://localhost:3001/servicios/wsdl")
+    pago = '<Message>
+              <Request>
+                <numero_tdc>'+numero_tdc+'</numero_tdc>
+                <nombre_tarjetahabiente>'+nombre_tarjetahabiente+'</nombre_tarjetahabiente>
+                <fecha_vencimiento>'+fecha_vencimiento+'</fecha_vencimiento>
+                <codigo_seguridad>'+codigo_seguridad+'</codigo_seguridad>
+                <tipo_tarjeta>'+tipo_tarjeta+'</tipo_tarjeta>
+                <direccion_cobro>'+direccion_cobro+'</direccion_cobro>
+                <total_pagar>'+total_pagar+'</total_pagar>
+                <cuenta_receptora>'+cuenta_receptora+'</cuenta_receptora>
+                <Fecha>'+fecha+'</Fecha>
+                <Hora>'+hora+'</Hora>
+              </Request>
+            </Message>'
+    response = client.request :verificar_pago, body: { "value" => pago }  
+    if response.success?  
+      data = response.to_hash[:verificar_pago_response][:value]
+      @respuesta = XmlSimple.xml_in(data)
+    end
+
     #NAMESPACE = 'pagotdc'
     #URL = 'http://localhost:8080/'
     #banco = SOAP::RPC::Driver.new(URL, NAMESPACE)
