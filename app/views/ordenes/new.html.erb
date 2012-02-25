@@ -33,7 +33,7 @@
   <tr>
     <td></td><td></td>
     <td><b>Total</b>:</td> 
-    <td class="aladerecha"><%= number_to_currency(@precio_total+100, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
+    <td class="aladerecha"><%= number_to_currency(@precio_total+@precio_envio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></td>
   </tr>
 </table>
 

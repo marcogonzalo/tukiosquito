@@ -5,6 +5,6 @@ class ServiciosController < ApplicationController
               :args => :string,
               :return => :string
   def prueba
-    render :soap => '<resp><hola>'+params[:value]+'</hola><chao>b</chao></resp>'
+    render :soap => params[:value]
   end
 end
