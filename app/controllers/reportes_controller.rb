@@ -10,22 +10,23 @@ class ReportesController < ApplicationController
       format.html
       format.pdf do
         render :pdf => "clientes",
-                :template => "reportes/bottom_ten.html.erb",
+                :template => "reportes/clientes.html.erb",
                 :layout => "plantilla.html"
       end
     end
   end
 
   def categorias
-    @categorias = Venta.select("sum(cantidad*costo) AS total, categoria_id").where(:created_at => (params[:fecha_inicio])..(params[:fecha_fin])).group("categoria_id").order('total DESC')
+    @categorias = Venta.select("sum(cantidad*costo) AS total, categoria_id").group("categoria_id").order('total DESC')
     respond_to do |format|
       format.html
       format.pdf do
         render :pdf     => "categorias",
-                :template => "reportes/bottom_ten.html.erb",
+                :template => "reportes/categorias.html.erb",
                 :layout => "plantilla.html"
       end
     end
+    #.where(:created_at => (params[:fecha_inicio])..(params[:fecha_fin]))
   end
 
   def top_ten
@@ -35,7 +36,7 @@ class ReportesController < ApplicationController
       format.html
       format.pdf do
         render :pdf => "top_ten",
-                :template => "reportes/bottom_ten.html.erb",
+                :template => "reportes/top_ten.html.erb",
                 :layout => "plantilla.html"
       end
     end

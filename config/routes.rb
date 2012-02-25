@@ -26,7 +26,7 @@ Tukiosquito::Application.routes.draw do
   match "/ver_ordenes" => "tienda#ver_ordenes", :as => "ver_ordenes"
   
   #REPORTES
-  match 'reportes/:action(.:format)', :controller => 'reportes'
+  match 'reportes(/:action(.:format))', :controller => 'reportes'
 
   #RECURSOS GENERALES
   resources :subcategorias
