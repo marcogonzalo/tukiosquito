@@ -7,9 +7,11 @@
   Seleccionar
 <% end %></p>
 <details>
-  <%= image_tag(@producto.imagen) unless @producto.imagen.nil? %> 
+  <%= image_tag(@producto.imagen, {:style=>""}) unless @producto.imagen.nil? %> 
   <p><%=h @producto.descripcion %></p>
-  <p><%= number_to_currency(@producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %>
+  <p>Dimensiones (alto,ancho,largo): <%= @producto.alto.to_s+"x"+@producto.ancho.to_s+"x"+@producto.largo.to_s %>cm.</p>
+  <p>Peso: <%=h @producto.peso %>Kg</p>
+  <p>Precio: <%= number_to_currency(@producto.precio, :unit=>"Bs", :delimeter=>".", :separator=>",") %></p>
 </details>
 
 <% if admin_actual then %>

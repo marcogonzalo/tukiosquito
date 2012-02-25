@@ -16,6 +16,20 @@ header {
   width:100%;
 }
 hr {clear:both;margin:1em auto 0 auto;}
+table th {
+  background:url("../images/search_bg.png") repeat scroll 0pt 0pt rgb(44, 73, 89);
+  border:thin solid rgb(20, 32, 39);
+  color:white;
+  text-align:center;
+}
+table td {
+  border:thin solid silver;
+  color:black;
+}
+table td, table th {
+  border-radius:6px;
+  padding:0.2em 1em;
+}
 table input[type=submit], table input[type=button], table button {
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -55,21 +69,9 @@ nav li {
   width:100px;
 	border-bottom: 1px dotted #BDBD9D;
 }
-table th {
-  background:url("../images/search_bg.png") repeat scroll 0pt 0pt rgb(44, 73, 89);
-  border:thin solid rgb(20, 32, 39);
-  color:white;
-  text-align:center;
-}
-table td {
-  border:thin solid silver;
-  color:black;
-}
-table td, table th {
-  border-radius:6px;
-  padding:0.2em 1em;
-}
 textarea {width:25em;height:10em;padding:5px;}
+
+details img {float:left; box-shadow:0px 0px 10px gray; margin:0 1em;}
 #nav_usuario {
   background: url("../images/main_nav_item_bg.png") repeat scroll 0pt 0pt rgb(57, 57, 57);
   border-bottom:thin solid black;
